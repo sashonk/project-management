@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "spring-user"
+      POSTGRES_PASSWORD: "apppw"
+    ports:
+      - "17432:5432"
+    container_name: "project-management-db"
+    volumes:
+      - C:\WORK\project-management-pg-data:/var/lib/postgresql/data
+    networks:
+      - app-network      
+  app:
+    image: project-management-app:latest
+    container_name: "pm-app"
+    environment:
+      PM_EMPLOYEE_REST_URL: "http://employee-app:8080/api/v2"  
+    ports:
+      - "17070:8080"
+    networks:
+      - app-network
+networks:
+  app-network:
+    name: app-network
+    external: true

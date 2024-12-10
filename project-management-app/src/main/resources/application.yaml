@@ -1,0 +1,26 @@
+otel:
+  exporter:
+    otlp:
+      endpoint: http://my-otelcol:4318
+  propagators:
+    - tracecontext
+  resource:
+    attributes:
+      deployment.environment: dev
+      service:
+        name: project-management
+
+spring:
+  application:
+    name: "ProjectManagementCompose"
+  datasource:
+    url: "jdbc:postgresql://project-management-db:5432/pmdb?username=spring-user&password=apppw"
+    username: "spring-user"
+    password: "apppw"
+    driver-class-name: org.postgresql.Driver
+  jpa: 
+    show-sql: true	
+pm:
+  employee:
+    rest:
+      url: ${PM_EMPLOYEE_REST_URL}

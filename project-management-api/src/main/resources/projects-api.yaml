@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: Project API
+  version: 1.0.0
+servers:
+  - url: http://localhost:7070
+paths:
+  /project:
+    post: 
+      operationId: 
+        createProject
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              $ref: '#/components/schemas/Project'
+      responses: 
+        '201':         
+          content: 
+            text/plain: 
+              schema: 
+               type: string 
+          description: Project Created
+          headers: 
+            Location:
+              schema: 
+                type: string
+                format: uri
+                description: location of a newly created Project 
+        '400':
+          description: Bad request
+          content:
+            text/plain:
+              schema:
+                type: string
+        '422':
+          description: Can't process request
+          content:
+            text/plain:
+              schema:
+                type: string
+  /project/list:
+    get:
+      operationId: findProjects
+      responses: 
+        200: 
+          description: List all projects
+          content: 
+            application/json: 
+              schema: 
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"  
+  /project/{projectId}:
+    get:
+      operationId: getById
+      parameters: 
+        - name: projectId
+          in: path
+          required: true
+          schema: 
+            type: number
+            format: int64
+      responses:
+        200:
+          description: Find project by id
+          content:
+            aplication/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        404:
+          description: Project not found
+components: 
+  schemas: 
+    ProjectStatus:
+      type: string
+      enum: 
+        - planned
+        - started
+        - completed
+    Project:
+      type: object
+      properties:
+        id:
+          type: number
+          format: int64
+        title:
+          type: string
+        dateStarted:
+          type: string
+          format: date
+        dueDate:
+          type: string
+          format: date
+        dateCompleted:
+          type: string
+          format: date
+        goals: 
+          type: array
+          items:
+            type: string
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100             
+        status:
+          $ref: "#/components/schemas/ProjectStatus"
+        members:
+          type: array
+          items: 
+            $ref: "#/components/schemas/ProjectMember" 
+    ProjectMember:
+      type: object
+      properties:
+        id:
+          type: number
+          format: int64
+        firstName:
+          type: string
+        lastName: 
+          type: string
+        departmentName:
+          type: string
+        externalId:
+          type: number
+          format: int64
