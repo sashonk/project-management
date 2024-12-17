@@ -24,6 +24,17 @@ public class ProjectMemberEntity {
     
     @Column(name = "department_name")
     private String departmentName;
+    
+    @Column(name = "source")
+    private String source;
+       
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
 
     public Long getId() {
         return id;

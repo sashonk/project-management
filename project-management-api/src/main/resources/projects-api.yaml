@@ -59,7 +59,7 @@ paths:
           in: path
           required: true
           schema: 
-            type: number
+            type: integer
             format: int64
       responses:
         200:
@@ -82,7 +82,7 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           format: int64
         title:
           type: string
@@ -113,7 +113,7 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           format: int64
         firstName:
           type: string
@@ -122,5 +122,5 @@ components:
         departmentName:
           type: string
         externalId:
-          type: number
+          type: integer
           format: int64
