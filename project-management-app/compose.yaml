@@ -16,6 +16,7 @@ services:
     container_name: "pm-app"
     environment:
       PM_EMPLOYEE_REST_URL: "http://employee-app:8080/api/v2"  
+      SPRING_PROFILES_ACTIVE: viable
     ports:
       - "17070:8080"
     networks:

@@ -1,5 +1,7 @@
 package ru.asocial.pm.model.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +29,18 @@ public class ProjectMemberEntity {
     
     @Column(name = "source")
     private String source;
-       
+    
+    @Column(name = "date_time_created")
+    private LocalDateTime dateTimeCreated;        
+
+    public LocalDateTime getDateTimeCreated() {
+        return dateTimeCreated;
+    }
+
+    public void setDateTimeCreated(LocalDateTime dateTimeCreated) {
+        this.dateTimeCreated = dateTimeCreated;
+    }
+
     public String getSource() {
         return source;
     }

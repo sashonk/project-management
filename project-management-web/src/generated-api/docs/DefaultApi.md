@@ -106,7 +106,7 @@ No authorization required
 import ProjectApi from 'project_api';
 
 let apiInstance = new ProjectApi.DefaultApi();
-let projectId = 3.4; // Number | 
+let projectId = 789; // Number | 
 apiInstance.getById(projectId, (error, data, response) => {
   if (error) {
     console.error(error);
